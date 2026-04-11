@@ -1,0 +1,4 @@
+Unable to find image 'bkimminich/juice-shop:latest' locally
+docker: Error response from daemon: error from registry: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+
+Run 'docker run --help' for more information

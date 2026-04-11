@@ -1,0 +1,32 @@
+"""Constants used across the PRISM framework.
+
+Never use magic numbers or hardcoded strings elsewhere in the codebase.
+"""
+
+# HTTP Status Constants
+HTTP_OK = 200
+HTTP_CREATED = 201
+HTTP_NO_CONTENT = 204
+HTTP_BAD_REQUEST = 400
+HTTP_UNAUTHORIZED = 401
+HTTP_FORBIDDEN = 403
+HTTP_NOT_FOUND = 404
+HTTP_METHOD_NOT_ALLOWED = 405
+HTTP_CONFLICT = 409
+HTTP_TOO_MANY_REQUESTS = 429
+HTTP_INTERNAL_SERVER_ERROR = 500
+
+# Timing Constants
+TIMING_OUTLIER_THRESHOLD_MS = 5000.0
+DEFAULT_TIMEOUT_SECONDS = 30.0
+
+# Rate Limiting
+DEFAULT_RATE_LIMIT_PER_SECOND = 50.0
+MAX_CONCURRENCY_LIMIT = 100
+
+# Roles and Fallbacks
+ROLE_ANONYMOUS = "anonymous"
+ROLE_ADMIN = "admin"
+
+# CLI Defaults
+DEFAULT_WORKSPACE_DIR = ".prism"

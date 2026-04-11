@@ -1,0 +1,63 @@
+# .github/workflows/ci.yml
+# This file validates every Jules PR automatically.
+
+name: PRISM CI — Jules PR Validation
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  quality-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Type checking (mypy)
+        run: mypy prism/ --strict
+        # Fails if Jules adds Any without comment
+        # Fails if type hints are missing
+
+      - name: Linting (ruff)
+        run: ruff check prism/ tests/
+        # Catches bare except, unused imports,
+        # style violations
+
+      - name: Security scan (bandit)
+        run: bandit -r prism/ -ll
+        # Catches hardcoded secrets, unsafe eval,
+        # subprocess injection patterns
+
+      - name: Import audit
+        run: |
+          python scripts/check_imports.py
+        # Custom script that reads pyproject.toml
+        # and fails if any import uses unapproved package
+
+      - name: Interface compliance
+        run: pytest tests/unit/interfaces/ -v
+        # Tests that all concrete classes still
+        # implement their Protocol correctly
+
+      - name: Test suite
+        run: pytest tests/ --cov=prism --cov-fail-under=80 -v
+
+      - name: File size gate
+        run: |
+          python scripts/check_file_sizes.py
+        # Fails if any file exceeds 400 lines
+        # (enforces Jules §1.1 automatically)
+
+      - name: PR body validation
+        run: |
+          python scripts/validate_pr_body.py
+        # Checks that PR body contains required sections
+        # from AGENTS.md §10.2 template

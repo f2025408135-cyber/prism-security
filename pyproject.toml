@@ -1,0 +1,37 @@
+[project]
+name = "prism"
+version = "0.1.0"
+description = "PRISM: A production-grade open source Python security research framework"
+authors = [
+    {name = "Security Researcher"}
+]
+dependencies = [
+    "httpx[http2]",
+    "pydantic>=2.0",
+    "sqlalchemy>=2.0",
+    "alembic",
+    "networkx",
+    "z3-solver",
+    "rich",
+    "typer",
+    "litellm",
+    "pyvis",
+    "mitmproxy",
+    "openapi-spec-validator",
+    "prance",
+    "PyYAML",
+    "structlog",
+    "tenacity",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-httpx",
+    "respx",
+    "mypy",
+    "ruff",
+    "bandit",
+    "pytest-cov"
+]

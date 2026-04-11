@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  prism:
+    build: .
+    volumes:
+      - ./.prism:/app/.prism
+    environment:
+      - LOG_LEVEL=INFO
+    command: scan --help

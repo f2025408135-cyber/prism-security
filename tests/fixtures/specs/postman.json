@@ -1,0 +1,45 @@
+{
+  "info": {
+    "_postman_id": "b1b700f1-4df2-430c-ab2e-503c8ff7754f",
+    "name": "Sample API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Users",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer test"
+          }
+        ],
+        "url": {
+          "raw": "https://api.example.com/users?role=admin",
+          "host": ["api", "example", "com"],
+          "path": ["users"],
+          "query": [
+            {
+              "key": "role",
+              "value": "admin"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "User Folder",
+      "item": [
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": "https://api.example.com/users/1"
+          }
+        }
+      ]
+    }
+  ]
+}
